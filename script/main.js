@@ -14,7 +14,7 @@ function deezerAPI(){
             1362519755:"Most played in Portugal",
             3449355042:"Música \"Pimba\" (Música Tradicional Portuguesa)",
             1111142361:"Most played in Mexico",
-            1111141961:"TMost played in Brazil",
+            1111141961:"Most played in Brazil",
             1109890291:"Most played in France",
             3110633262:"Pop Rock",
             1313621735:"Most played in the USA",
@@ -167,11 +167,114 @@ function setLayout(data, name, id){
             }
             
         }
+}
 
 
+function setCountryLayout(data, name, id){
+        var top = 1;
+        var max = parseInt(document.body.getAttribute("data-tracks-max")) + 1;
+        var data = JSON.parse(data)
+        var tracks = data.tracks.data;
+        var templates={
+            track:'<div class="playlist-track" data-track="t-{{id}}">\
+                    <span data-position="{{position}}" class="position">{{position}}\</span>\
+                    <span class="title"><div class="loader"></div>{{title}}</span>\
+                    <span class="artist">by {{artist}}</span>\
+                    <span class="track-position">\
+                  </span>\
+                    <audio id="t-{{id}}" style="display:none" src="{{src}}"></audio>\
+                  </div>',
+            playlist:""
+        }
+        var trackHTML = "";
+        for(var t in tracks){
+            var track = tracks[t]
+            if(track.hasOwnProperty("preview") && track.preview != ""){
+            var html = templates.track.replace(/{{position}}/g, top).replace(/{{id}}/g, parseInt(track.id) + (new Date()).getTime() ).replace(/{{title}}/g, track.title_short).replace("{{artist}}", track.artist.name).replace("{{src}}", track.preview)
+            
+            trackHTML+=html
+            top += 1;
+            }
+            if(top == max){
+                break;
+            }
+        }
+
+        document.querySelector('#country .playlist-header').innerHTML = name;
+        document.querySelector('#country .playlist-tracks').innerHTML = trackHTML;
 
 
+        var allAudios = document.querySelectorAll('#country  .playlist-track audio');
 
+        for(var a in allAudios){
+           allAudios[a].onplay = function(e){
+
+               if(e.target.readyState >= 3){
+                var allAudios2 = document.querySelectorAll('#country  .playlist-track audio');
+
+                for(var a = 0;a!=allAudios2.length; a++){
+                    if(allAudios2[a].id != e.target.id){
+                    allAudios2[a].pause();
+                    allAudios2[a].currentTime = 0;
+                }
+                }
+                
+                e.target.play()
+                }
+            }
+            allAudios[a].oncanplaythrough = function(e){
+                var id = e.currentTarget.getAttribute("id");
+
+                if(document.querySelector("#country [data-track='"+id+"']  .loader")) document.querySelector("#country [data-track='"+id+"']  .loader").parentElement.removeChild(document.querySelector("#country [data-track='"+id+"'] .title .loader"))
+
+            }
+        }
+
+        var trackDivs = document.querySelectorAll(".playlist-track"); 
+        for(var a in trackDivs){
+            var div = trackDivs[a];
+            trackDivs[a].onmouseenter = function(e){
+                currentTrackId = e.currentTarget.getAttribute("data-track");
+                var audio = document.querySelector("#"+currentTrackId);
+
+                if(audio.readyState >= 3) audio.play()
+            }
+
+                trackDivs[a].onclick = function(e){
+                currentTrackId = e.currentTarget.getAttribute("data-track");
+                var audio = document.querySelector("#"+currentTrackId);
+                if(audio.paused){
+                    audio.play()
+                }else{
+                                       audio.pause();
+                    audio.currentTime = 0; 
+                }
+
+                if(audio.readyState >= 3) audio.play()
+            }
+
+            trackDivs[a].onmouseleave = function(e){
+                currentTrackId = e.currentTarget.getAttribute("data-track");
+                var audio = document.querySelector("#"+currentTrackId);
+
+                if(!audio.paused){
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+
+
+            trackDivs[a].onblur = function(e){
+                currentTrackId = e.currentTarget.getAttribute("data-track");
+                var audio = document.querySelector("#"+currentTrackId);
+
+                if(!audio.paused){
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+            
+        }
 }
 
 
@@ -191,7 +294,12 @@ function setLayout(data, name, id){
 
     }
 
+    if(document.querySelector("select")){
+    document.querySelector("select").onchange = function(e){
+        deezer.get(parseInt(e.target.value), setCountryLayout)
+    }
 
+}
     news.get(function(res){
         if(!document.querySelector(".rss")) return;
             document.querySelector(".rss").innerHTML = res;
@@ -202,9 +310,9 @@ function setLayout(data, name, id){
             for(var i = 0;i!=items.length;i++){
                 var item = items[i];
                 var image = item.querySelector("media\\:content").getAttribute("url").replace("0.8","1")
-                var title = items[i].querySelector("title").innerHTML
-                var category =  items[i].querySelector("category").innerHTML.replace("<!--[CDATA[", "").replace("]]-->","")
-                var description= items[i].querySelector("description").innerHTML.replace("<!--[CDATA[", "").replace("]]-->","");
+                var title = item.querySelector("title").innerHTML
+                var category =  item.querySelector("category").innerHTML.replace("<!--[CDATA[", "").replace("]]-->","")
+                var description= item.querySelector("description").innerHTML.replace("<!--[CDATA[", "").replace("]]-->","");
                 var date = new Date(document.querySelector("item pubdate").innerText); 
 
                 if(category == "Music" && currentNew < maxNews){
@@ -212,7 +320,7 @@ function setLayout(data, name, id){
                     currentArticle.querySelector("h3").innerHTML = title;
                     currentArticle.querySelector("p").innerHTML = description;
                     currentArticle.querySelector(".article-image").style.backgroundImage = "url("+ image +")"
-                    currentArticle.querySelector(".news-link").href = document.querySelector("item").innerText.split(" ")[0]
+                    currentArticle.querySelector(".news-link").href = item.innerText.split(" ")[0]
                     //currentArticle.querySelector("time").innerText = date.toDateString()
                     currentNew++
                 }

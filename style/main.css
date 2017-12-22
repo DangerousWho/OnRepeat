@@ -361,6 +361,20 @@ ul {
     filter: brightness(150%);
 }
 
+/*SELECT BOX*/
+select {
+    background-color: #161616;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    vertical-align: unset;
+    border: 2px solid #494949;
+    margin-left: 6px;
+    outline: none;
+    color: white;
+    font-family: "Open Sans";
+    display: inline-block;
+}
 
 /*CHART*/
 
@@ -458,6 +472,41 @@ ul {
 .playlist-red .track-position {
     background-color: #ff114d;
 }
+
+/*MUSIC LOADER*/
+.loader {
+    width: 15px;
+    height: 0px;
+    display: inline-block;
+    margin-right: 12px;
+    border-radius: 52%;
+    border-top: #ecff37 solid 2px;
+    border-bottom: 2px solid #202020;
+    border-left: 2px solid #202020;
+    border-right: 2px solid #202020;
+    animation: rotate 0.8s infinite;
+}
+
+
+.playlist-orange .loader {
+
+    border-top: #db9600 solid 2px;
+
+}
+
+
+/*MUSIC LOADER ANIMATION*/
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
 /*CHART CTA*/
 
 .more a {
@@ -952,6 +1001,7 @@ textarea {
     left: 0px;
 }
 
+/*ESSENTIAL POST PROCESSING CSS*/
 .playlist-track span.position{
     background-color:transparent;
     color:#ecff37;
@@ -985,31 +1035,6 @@ textarea {
 }
 
 
-.loader {
-    width: 15px;
-    height: 0px;
-    display: inline-block;
-    margin-right: 12px;
-    border-radius: 52%;
-    border-top: #ecff37 solid 2px;
-    border-bottom: 2px solid #202020;
-    border-left: 2px solid #202020;
-    border-right: 2px solid #202020;
-    animation: rotate 0.8s infinite;
-}
 
 
-.playlist-orange .loader {
-
-    border-top: #db9600 solid 2px;
-
-}
-@keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-}
 
