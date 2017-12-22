@@ -1,31 +1,46 @@
-## Synopsis
+Welcome to onRepeat
+===================
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+
+## Sobre o projeto
+
+Este projeto surgiu no âmbito da cadeira de Tecnologias e Programação Web, que consiste na criação de um website para a avaliação final. Partindo desse princípio, criei uma marca fictícia (onRepeat), desenvolvi conteúdos visuais que são usados no site. Parte deste site é dinâmico, nomeadamente a segunda secção de notícias e todas as tabelas das músicas.
 
 ## Website URL
 
 https://editeccfernandes.github.io/OnRepeat/
 
-## Motivation
+## Disclaimer e fontes
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+A informação deste website foi retirada das seguintes fontes: 
 
-## Installation
+Notícias estáticas: 
 
-Provide code examples and explanations of how to get the project.
+ - [Billboard](https://www.billboard.com/) 
+ - [Future Music](http://www.musicradar.com/futuremusic)
 
-## API Reference
+Notícias dinâmicas: 
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+ - [MTV News](http://www.mtv.com/news/)
 
-## Tests
+Tabelas/Playlists/Music Charts: 
 
-Describe and show how to run the tests with code examples.
+- [Deezer API](https://www.deezer.com/us/) 
 
-## Contributors
+Fotografias: 
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+- [Pexels](https://www.pexels.com/) 
+- [Unsplash](https://unsplash.com/) 
+- [CNBC](https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2015/08/17/102926320-GettyImages-92535411.jpg)
 
-## License
+Ícones:
 
-A short snippet describing the license (MIT, Apache, etc.)
+- [Entypo](http://www.entypo.com/) 
+- [FontAwsome](http://fontawesome.io/)
+
+Outras fontes:
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [W3Schools](https://www.w3schools.com/)
+- [CSS Tricks](https://css-tricks.com/)
+
