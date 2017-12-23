@@ -236,20 +236,21 @@ ul {
     background-image: url("../img/banner/charts.png");
     background-size: cover;
     background-repeat: no-repeat;
-    /*background-position-y: -100px;*/
+    background-position: center top;    
 }
 
 #banner-contact {
     background-image: url("../img/banner/contact.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center bottom;
 }
 
 #banner-about {
     background-image: url("../img/banner/about.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center top;
 }
 
 /*SLIDESHOW*/
@@ -952,7 +953,7 @@ textarea {
         margin-top: 0;
     }
     #banner {
-        background-position-y: 0;
+        background-position: center;
     }
     .slideshow-text {
         padding: 8px 0 12px 50px;
