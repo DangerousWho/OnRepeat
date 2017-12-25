@@ -810,20 +810,52 @@ footer a:hover {
 
 /*FOOTER SOCIAL ICONS*/
 
-.fa {
-    color: rgb(129, 129, 129);
-    padding: 3px;
-    padding-top: 10px;
-    width: 20px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    font-size: 25px !important;
+.footer_svg {
+ display: block;
+ height: 30px;
+ width: 30px;
+ fill: rgb(236, 255, 55);
+ border-radius: 100%;
+ padding: 5px;
+ margin: 5px;
+ display: inline-block;
+  transition: all 0.6s ease;
 }
 
-.fa:hover {
-    opacity: 0.7;
-    color: #f1ff50;
+
+.footer_mail:hover{
+    background-color: #dd4b39;
+    fill: black;
+}
+
+.footer_facebook:hover{
+background-color: #3b5998;
+fill: black;
+}
+
+.footer_github:hover{
+    background-color: #ffffff;
+    fill: black;
+}
+
+.footer_instagram:hover{
+    background-color: #e95950;
+    fill: black;
+}
+
+.footer_soundcloud:hover{
+    background-color: #ff7700;
+    fill: black;
+}
+
+.footer_youtube:hover{
+    background-color: #ff0000;
+    fill: black;
+}
+
+.footer_deezer:hover{
+    background-color: #ff0084;
+    fill: black;
 }
 
 /*CONTACTS*/
@@ -1114,3 +1146,4 @@ textarea {
     background-color: #ff114d !important;
     color: black;
 }
+
